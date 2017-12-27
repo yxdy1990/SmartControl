@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorBackground">#F2F2F2</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorTabNor">#969696</color>
+    <color name="colorTabSel">#25AAFE</color>
+    <drawable name="clr_normal">#FF6501</drawable>
+    <drawable name="clr_pressed">#F44100</drawable>
+</resources>

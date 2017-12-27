@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">智控</string>
+    <string name="local_btn_name">本地设备</string>
+    <string name="cloud_btn_name">云端设备</string>
+    <string name="tab1">首页</string>
+    <string name="tab2">智能</string>
+    <string name="tab3">消息</string>
+    <string name="tab4">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
