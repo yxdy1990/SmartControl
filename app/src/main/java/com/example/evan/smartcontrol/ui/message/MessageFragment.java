@@ -1,4 +1,4 @@
-package com.example.evan.smartcontrol.ui;
+package com.example.evan.smartcontrol.ui.message;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -61,6 +61,7 @@ public class MessageFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
+
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {

@@ -6,14 +6,22 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.evan.smartcontrol.ui.AboutMeFragment;
-import com.example.evan.smartcontrol.ui.HomePageFragment;
-import com.example.evan.smartcontrol.ui.IntelligentFragment;
-import com.example.evan.smartcontrol.ui.MessageFragment;
+import com.example.evan.smartcontrol.ui.aboutme.AboutMeFragment;
+import com.example.evan.smartcontrol.ui.homepage.HomePageFragment;
+import com.example.evan.smartcontrol.ui.intelligent.IntelligentFragment;
+import com.example.evan.smartcontrol.ui.message.MessageFragment;
+import com.haier.uhome.usdk.api.interfaces.IuSDKCallback;
+import com.haier.uhome.usdk.api.uSDKDeviceManager;
+import com.haier.uhome.usdk.api.uSDKDeviceTypeConst;
+import com.haier.uhome.usdk.api.uSDKErrorConst;
+import com.haier.uhome.usdk.api.uSDKLogLevelConst;
+import com.haier.uhome.usdk.api.uSDKManager;
 import com.orhanobut.logger.Logger;
 import butterknife.ButterKnife;
 import butterknife.BindView;
 import com.jpeng.jptabbar.*;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         initUserInterfaceView();
+        initDeviceCtrlEnv();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        cleanDeviceCtrlEnv();
     }
 
     public void initUserInterfaceView() {
@@ -120,6 +136,49 @@ public class MainActivity extends AppCompatActivity {
         if (fragment != null) {
             ft.hide(fragment);
         }
+    }
+
+    private void initDeviceCtrlEnv() {
+        uSDKManager usdkMgr = uSDKManager.getSingleInstance();
+        uSDKDeviceManager usdkDeviceMgr = uSDKDeviceManager.getSingleInstance();
+        ArrayList types = new ArrayList<uSDKDeviceTypeConst>();
+        types.add(uSDKDeviceTypeConst.ALL_TYPE);
+
+        usdkMgr.init(getApplicationContext());
+        usdkMgr.enableFeatures(uSDKManager.SDK_FEATURE_DEFAULT);
+        usdkMgr.initLog(uSDKLogLevelConst.USDK_LOG_DEBUG, false, new IuSDKCallback() {
+            @Override
+            public void onCallback(uSDKErrorConst uSDKErrorConst) {
+                Logger.d("initLog IuSDKCallback: " + uSDKErrorConst);
+            }
+        });
+
+        usdkDeviceMgr.setInterestedDeviceTypes(types);
+        usdkMgr.startSDK(new IuSDKCallback() {
+            @Override
+            public void onCallback(uSDKErrorConst uSDKErrorConst) {
+                if (uSDKErrorConst == uSDKErrorConst.RET_USDK_OK) {
+                    Logger.d("###### uSDK Start Success ######");
+                } else {
+                    Logger.e("!!!!!! uSDK Start Error !!!!!!");
+                }
+            }
+        });
+        Logger.d("uSDK Init Complete......");
+    }
+
+    private void cleanDeviceCtrlEnv() {
+        uSDKManager usdkMgr = uSDKManager.getSingleInstance();
+        usdkMgr.stopSDK(new IuSDKCallback() {
+            @Override
+            public void onCallback(uSDKErrorConst uSDKErrorConst) {
+                if (uSDKErrorConst == uSDKErrorConst.RET_USDK_OK) {
+                    Logger.d("###### uSDK Stop Success ######");
+                } else {
+                    Logger.e("!!!!!! uSDK Stop Error !!!!!!");
+                }
+            }
+        });
     }
 
     /**

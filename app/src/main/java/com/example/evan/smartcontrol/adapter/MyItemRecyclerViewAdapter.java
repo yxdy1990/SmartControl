@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.evan.smartcontrol.R;
 
-import com.example.evan.smartcontrol.ui.MessageFragment.OnListFragmentInteractionListener;
+import com.example.evan.smartcontrol.ui.message.MessageFragment.OnListFragmentInteractionListener;
 import com.example.evan.smartcontrol.ui.dummy.DummyContent.DummyItem;
 
 import java.util.List;

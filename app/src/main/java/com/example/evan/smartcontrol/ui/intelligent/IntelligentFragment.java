@@ -1,4 +1,4 @@
-package com.example.evan.smartcontrol.ui;
+package com.example.evan.smartcontrol.ui.intelligent;
 
 
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.evan.smartcontrol.ui;
+package com.example.evan.smartcontrol.ui.aboutme;
 
 import android.content.Context;
 import android.os.Bundle;
