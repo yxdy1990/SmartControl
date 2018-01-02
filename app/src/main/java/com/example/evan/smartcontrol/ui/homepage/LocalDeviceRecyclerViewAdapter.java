@@ -53,6 +53,8 @@ public class LocalDeviceRecyclerViewAdapter extends RecyclerView.Adapter<LocalDe
             public void onClick(View v) {
                 if (null != mListener) {
                     mListener.onListFragmentInteraction(holder.mDevItem);
+                } else {
+                    Logger.e("List Item Listener is Null!");
                 }
             }
         });
@@ -74,9 +76,9 @@ public class LocalDeviceRecyclerViewAdapter extends RecyclerView.Adapter<LocalDe
             super(view);
 
             mView = view;
-            mTypeView = (TextView) view.findViewById(R.id.device_type);
-            mStatusView = (TextView) view.findViewById(R.id.device_status);
-            mMacView = (TextView) view.findViewById(R.id.device_mac);
+            mTypeView = view.findViewById(R.id.device_type);
+            mStatusView =  view.findViewById(R.id.device_status);
+            mMacView = view.findViewById(R.id.device_mac);
         }
     }
 }

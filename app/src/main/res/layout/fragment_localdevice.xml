@@ -6,8 +6,6 @@
     android:name="com.example.evan.smartcontrol.ui.homepage.LocalDeviceFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="com.example.evan.smartcontrol.ui.homepage.LocalDeviceFragment"
     tools:listitem="@layout/fragment_localdevice_list_item" />

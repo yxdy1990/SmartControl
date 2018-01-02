@@ -1,6 +1,7 @@
 package com.example.evan.smartcontrol.ui.homepage;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.evan.smartcontrol.util.AppConstant;
 import com.haier.uhome.usdk.api.interfaces.IuSDKDeviceManagerListener;
 import com.haier.uhome.usdk.api.uSDKCloudConnectionState;
 import com.haier.uhome.usdk.api.uSDKDevice;
@@ -26,6 +28,7 @@ import java.util.List;
  * A fragment representing a list of Items.
  */
 public class LocalDeviceFragment extends Fragment {
+    private IuSDKDeviceManagerListener usdkDeviceListener;
     private OnListFragmentInteractionListener mListener;
     private LocalDeviceRecyclerViewAdapter mListAdapter;
 
@@ -40,25 +43,24 @@ public class LocalDeviceFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        uSDKDeviceManager usdkDeviceMgr = uSDKDeviceManager.getSingleInstance();
-        usdkDeviceMgr.setDeviceManagerListener(new IuSDKDeviceManagerListener() {
+        usdkDeviceListener = new IuSDKDeviceManagerListener() {
             @Override
-            public void onDeviceBind(String devicesChanged) {
-                Logger.d("onDeviceBind: " + devicesChanged);
+            public void onDeviceBind(String devsChanged) {
+                Logger.d("onDeviceBind: " + devsChanged);
             }
 
             @Override
-            public void onDeviceUnBind(String devicesChanged) {
-                Logger.d("onDeviceUnBind: " + devicesChanged);
+            public void onDeviceUnBind(String devsChanged) {
+                Logger.d("onDeviceUnBind: " + devsChanged);
             }
 
             @Override
-            public void onDevicesAdd(List<uSDKDevice> devicesChanged) {
+            public void onDevicesAdd(List<uSDKDevice> devsChanged) {
                 onDeviceListDataUpdated();
             }
 
             @Override
-            public void onDevicesRemove(List<uSDKDevice> devicesChanged) {
+            public void onDevicesRemove(List<uSDKDevice> devsChanged) {
                 onDeviceListDataUpdated();
             }
 
@@ -66,10 +68,10 @@ public class LocalDeviceFragment extends Fragment {
             public void onCloudConnectionStateChange(uSDKCloudConnectionState state) {
                 Logger.d("onCloudConnectionStateChange: " + state);
             }
-        });
-        List<uSDKDevice> deviceList = usdkDeviceMgr.getDeviceList();
-        mListAdapter = new LocalDeviceRecyclerViewAdapter(deviceList, mListener);
+        };
+        uSDKDeviceManager.getSingleInstance().setDeviceManagerListener(usdkDeviceListener);
         mListener = new OnListFragmentInteractionListener();
+        mListAdapter = new LocalDeviceRecyclerViewAdapter(uSDKDeviceManager.getSingleInstance().getDeviceList(), mListener);
     }
 
     @Override
@@ -110,9 +112,15 @@ public class LocalDeviceFragment extends Fragment {
     }
 
     public class OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(uSDKDevice deviceObj) {
-            Logger.d("Local List Item Clicked: " + deviceObj.getDeviceId());
+            String deviceId = deviceObj.getDeviceId();
+            Intent intent = new Intent(getActivity(), DeviceControlActivity.class);
+            Bundle bundle = new Bundle();
+
+            bundle.putString(AppConstant.DEVICE_ID, deviceId);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            Logger.d("start DeviceControlActivity.");
         }
     }
 }

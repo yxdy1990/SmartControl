@@ -5,6 +5,7 @@ package com.example.evan.smartcontrol.util;
  */
 
 public class AppConstant {
+    public static final String DEVICE_ID = "DeviceId";
     public static final String DEVICE_TYPE = "DeviceType";
 
     public static final String DEV_LIGHT = "201c120024000810140100000000000000000000000000000000000000000040";

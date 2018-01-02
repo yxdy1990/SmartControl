@@ -50,13 +50,6 @@ public class MainActivity extends AppCompatActivity {
         initDeviceCtrlEnv();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        cleanDeviceCtrlEnv();
-    }
-
     public void initUserInterfaceView() {
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -160,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                 if (uSDKErrorConst == uSDKErrorConst.RET_USDK_OK) {
                     Logger.d("###### uSDK Start Success ######");
                 } else {
-                    Logger.e("!!!!!! uSDK Start Error !!!!!!");
+                    Logger.e("!!!!!! uSDK Start Error: %s!!!!!!", uSDKErrorConst.getValue());
                 }
             }
         });
@@ -175,10 +168,17 @@ public class MainActivity extends AppCompatActivity {
                 if (uSDKErrorConst == uSDKErrorConst.RET_USDK_OK) {
                     Logger.d("###### uSDK Stop Success ######");
                 } else {
-                    Logger.e("!!!!!! uSDK Stop Error !!!!!!");
+                    Logger.e("!!!!!! uSDK Stop Error: %s!!!!!!", uSDKErrorConst.getValue());
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        cleanDeviceCtrlEnv();
     }
 
     /**

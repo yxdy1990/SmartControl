@@ -53,7 +53,7 @@ public class HomePageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_page, container, false);
 
         unbinder = ButterKnife.bind(this, view);
-        sdkVersion = (TextView) view.findViewById(R.id.sdk_version);
+        sdkVersion = view.findViewById(R.id.sdk_version);
         sdkVersion.setText("uSDK Version: " + uSDKManager.getSingleInstance().getuSDKVersion());
 
         return view;

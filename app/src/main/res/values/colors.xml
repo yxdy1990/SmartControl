@@ -6,6 +6,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTabNor">#969696</color>
     <color name="colorTabSel">#25AAFE</color>
-    <drawable name="clr_normal">#FF6501</drawable>
-    <drawable name="clr_pressed">#F44100</drawable>
+    <color name="clr_normal">#FF6501</color>
+    <color name="clr_pressed">#F44100</color>
+    <color name="list_normal">#D0D0D0</color>
+    <color name="list_pressed">#B0B0B0</color>
+    <color name="light_yellow">#FFF88A</color>
+    <color name="light_green">#C2E6C6</color>
 </resources>
