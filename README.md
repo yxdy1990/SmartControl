@@ -1,2 +1,9 @@
 # SmartControl
-My first Android app, about everything I will learn.
+
+```
+My first Android app;
+About something I will learn.
+
+```
+
+@ MarkDown
