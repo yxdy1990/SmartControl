@@ -6,4 +6,9 @@ About something I will learn.
 
 ```
 
+## Git Learn
+- git branch
+- git checkout
+- git merge
+
 @ MarkDown
