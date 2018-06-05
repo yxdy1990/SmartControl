@@ -42,6 +42,15 @@ public class HomePageFragment extends Fragment {
         Logger.d("Cloud Device List Btn Clicked.");
     }
 
+    @OnClick(R.id.udp_btn)
+    public void onUdpBtnClick(View view) {
+        Logger.d("Udp broadcast Btn Clicked.");
+        Intent intent = new Intent(getActivity(), UdpBroadcastActivity.class);
+        Bundle bundle = new Bundle();
+
+        startActivity(intent);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

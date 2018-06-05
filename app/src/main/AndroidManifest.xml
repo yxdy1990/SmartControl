@@ -16,16 +16,18 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.homepage.DeviceListActivity"
-            android:label="@string/device_list_name"></activity>
+            android:label="@string/device_list_name" />
         <activity
             android:name=".ui.homepage.DeviceControlActivity"
-            android:label="@string/device_ctrl_name"></activity>
+            android:label="@string/device_ctrl_name" />
+        <activity
+            android:name=".ui.homepage.UdpBroadcastActivity"
+            android:label="@string/udp_broadcast_name" />
     </application>
 
 </manifest>

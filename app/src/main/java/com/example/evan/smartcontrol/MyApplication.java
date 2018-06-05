@@ -22,7 +22,7 @@ public class MyApplication extends Application {
         mContext = getApplicationContext();
 
         initThirdPartyComponents();
-        Logger.d("****** My Application onCreate ******");
+        Logger.d("*** My Application onCreate ***");
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MyApplication extends Application {
 
     private void initThirdPartyComponents() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-                .showThreadInfo(true)
+                .showThreadInfo(false)
                 .methodCount(1)
                 .tag("SmartCtrl")
                 .build();
