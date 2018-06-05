@@ -11,4 +11,6 @@ About something I will learn.
 - git checkout
 - git merge
 
+- git stash
+
 @ MarkDown
